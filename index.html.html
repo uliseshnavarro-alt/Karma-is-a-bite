@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Karma Is A Bite - Formato de Pedido</title>
+  <style>
+    :root {
+      --header-bg: #8c271e;
+      --durazno-claro: #f4cfc4;
+      --durazno-medio: #eaa896;
+      --terracota: #d97a63;
+      --terracota-oscuro: #7a261d;
+      --texto: #3a1914;
+      --blanco-suave: #fff9f7;
+      --borde: #c96b54;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: var(--blanco-suave);
+      color: var(--texto);
+      padding: 20px;
+      line-height: 1.45;
+    }
+
+    .form-wrapper {
+      max-width: 960px;
+      margin: 0 auto;
+      border: 2px solid var(--borde);
+      background-color: var(--durazno-claro);
+      box-shadow: 0 8px 24px rgba(122, 38, 29, 0.12);
+    }
+
+    .banner {
+      background-color: var(--header-bg);
+      color: #ffffff;
+      text-align: center;
+      padding: 14px 16px;
+      font-size: 1.35rem;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+
+    .bienvenida {
+      background-color: var(--durazno-claro);
+      text-align: center;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--borde);
+      font-size: 0.98rem;
+    }
+
+    .bloque-pregunta {
+      background-color: var(--terracota);
+      color: #ffffff;
+      padding: 12px 16px;
+      font-weight: bold;
+      text-align: center;
+      border-bottom: 1px solid var(--borde);
+    }
+
+    .bloque-sub {
+      background-color: var(--durazno-medio);
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--borde);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      padding: 14px 16px;
+      background-color: var(--durazno-claro);
+      border-bottom: 1px solid var(--borde);
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px 14px;
+      padding: 14px 16px;
+      background-color: var(--durazno-claro);
+      border-bottom: 1px solid var(--borde);
+    }
+
+    .campo {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    label {
+      font-size: 0.92rem;
+      font-weight: 600;
+    }
+
+    input[type="text"],
+    input[type="tel"],
+    input[type="date"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid var(--borde);
+      border-radius: 4px;
+      background-color: #ffffff;
+      color: var(--texto);
+      font-size: 0.92rem;
+      font-family: inherit;
+    }
+
+    textarea {
+      min-height: 85px;
+      resize: vertical;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.92rem;
+      background: rgba(255, 255, 255, 0.55);
+      padding: 7px 10px;
+      border-radius: 4px;
+      border: 1px solid rgba(122, 38, 29, 0.25);
+    }
+
+    .check-item input[type="checkbox"],
+    .check-item input[type="radio"] {
+      accent-color: var(--header-bg);
+      width: 16px;
+      height: 16px;
+    }
+
+    .aviso-sides {
+      background-color: var(--durazno-claro);
+      text-align: center;
+      padding: 12px 16px;
+      font-weight: bold;
+      border-bottom: 1px solid var(--borde);
+    }
+
+    .cierre {
+      background-color: var(--terracota);
+      color: #ffffff;
+      text-align: center;
+      padding: 18px 16px;
+      border-bottom: 1px solid var(--borde);
+    }
+
+    .cierre p:last-child {
+      margin-top: 6px;
+      font-style: italic;
+      font-weight: bold;
+    }
+
+    .acciones {
+      padding: 18px;
+      text-align: center;
+      background-color: var(--durazno-claro);
+    }
+
+    button[type="submit"] {
+      background-color: var(--header-bg);
+      color: #ffffff;
+      border: none;
+      padding: 13px 32px;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    button[type="submit"]:hover {
+      background-color: var(--terracota-oscuro);
+    }
+
+    @media (max-width: 720px) {
+      .grid-2,
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <form class="form-wrapper" action="https://api.web3forms.com/submit" method="POST">
+    <!-- Reemplaza TU_ACCESS_KEY_AQUI por tu clave de Web3Forms -->
+    <input type="hidden" name="access_key" value="2a4fa698-241f-41aa-99f9-fecf823e54ad" />
+    <input type="hidden" name="subject" value="Nuevo Pedido - Karma Is A Bite" />
+
+    <div class="banner">Karma Is A Bite - Formato de Pedido</div>
+
+    <div class="bienvenida">
+      <p>¡Hola! Por favor, rellena a detalle este formulario y nos pondremos en contacto contigo.</p>
+      <p>Puedes esperar un mensaje de Whatsapp en las próximas 12 horas para confirmar los detalles y la disponibilidad de tu orden.</p>
+    </div>
+
+    <!-- 1 -->
+    <div class="bloque-pregunta">1. ¿Cuál es tu nombre y número de contacto (Whatsapp)?</div>
+    <div class="grid-2">
+      <div class="campo">
+        <label for="nombre_cliente">Tu nombre completo</label>
+        <input type="text" id="nombre_cliente" name="1_Nombre_Cliente" required />
+      </div>
+      <div class="campo">
+        <label for="whatsapp_cliente">Número de contacto (WhatsApp)</label>
+        <input type="tel" id="whatsapp_cliente" name="1_WhatsApp_Cliente" required />
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="bloque-pregunta">2. ¿Cuál es el nombre de la persona que recibirá el regalo?</div>
+    <div class="grid-2">
+      <div class="campo" style="grid-column: 1 / -1;">
+        <label for="nombre_destinatario">Nombre de quien recibe</label>
+        <input type="text" id="nombre_destinatario" name="2_Nombre_Destinatario" required />
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="bloque-pregunta">3. ¿Cuándo y adónde debería llegar el regalo? (Precio estándar + Envío)</div>
+    <div class="grid-2">
+      <div class="campo">
+        <label for="fecha_entrega">Fecha de entrega</label>
+        <input type="date" id="fecha_entrega" name="3_Fecha_Entrega" required />
+      </div>
+      <div class="campo">
+        <label for="horario_disponible">Horarios disponibles</label>
+        <select id="horario_disponible" name="3_Horarios_Disponibles">
+          <option value="">Selecciona un horario</option>
+          <option value="08:00 - 10:00">08:00 - 10:00</option>
+          <option value="10:00 - 12:00">10:00 - 12:00</option>
+          <option value="12:00 - 14:00">12:00 - 14:00</option>
+        </select>
+      </div>
+      <div class="campo" style="grid-column: 1 / -1;">
+        <label for="direccion_envio">Dirección EXACTA y con referencias (agrega el link de maps también)</label>
+        <textarea id="direccion_envio" name="3_Direccion_y_Referencias" required></textarea>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="bloque-pregunta">4. ¿En qué Era estará inspirado este regalo? ¿Alguna canción, lyric o referencia específica que quieras agregar?</div>
+    <div class="grid-2">
+      <div class="campo">
+        <label for="era">Era</label>
+        <select id="era" name="4_Era">
+          <option value="">Selecciona una Era</option>
+          <option value="Taylor Swift (Debut)">Taylor Swift (Debut)</option>
+          <option value="Fearless">Fearless</option>
+          <option value="Speak Now">Speak Now</option>
+          <option value="Red">Red</option>
+          <option value="1989">1989</option>
+          <option value="reputation">reputation</option>
+          <option value="Lover">Lover</option>
+          <option value="folklore">folklore</option>
+          <option value="evermore">evermore</option>
+          <option value="Midnights">Midnights</option>
+          <option value="The Tortured Poets Department">The Tortured Poets Department</option>
+          <option value="The Life of a Showgirl">The Life of a Showgirl</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="extra_era">Extra (canción, lyric o referencia)</label>
+        <input type="text" id="extra_era" name="4_Extra_Cancion_Lyric" />
+      </div>
+    </div>
+
+    <!-- Desayuno: a) Club Sandwich -->
+    <div class="bloque-pregunta">¡Ahora, elige los detalles del desayuno!<br />a) The Loaf of a Doughgirl Club Sandwich</div>
+    <div class="grid-3">
+      <div class="campo">
+        <label for="pan_masa_madre">Pan de masa madre</label>
+        <select id="pan_masa_madre" name="a_Pan_Masa_Madre">
+          <option value="No" selected>No</option>
+          <option value="Sí">Sí</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="queso">Queso</label>
+        <select id="queso" name="a_Queso">
+          <option value="">Seleccionar</option>
+          <option value="Sí">Sí</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="mayonesa">Mayonesa</label>
+        <select id="mayonesa" name="a_Mayonesa">
+          <option value="">Seleccionar</option>
+          <option value="Sí">Sí</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="jamon">Jamón</label>
+        <select id="jamon" name="a_Jamon">
+          <option value="">Seleccionar</option>
+          <option value="Sí">Sí</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="aguacate">Aguacate</label>
+        <select id="aguacate" name="a_Aguacate">
+          <option value="">Seleccionar</option>
+          <option value="Sí">Sí</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="tocino">Tocino</label>
+        <select id="tocino" name="a_Tocino">
+          <option value="">Seleccionar</option>
+          <option value="Sí">Sí</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="aderezo">Aderezo</label>
+        <select id="aderezo" name="a_Aderezo">
+          <option value="">Seleccionar</option>
+          <option value="Sí">Sí</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="jitomate">Jitomate</label>
+        <select id="jitomate" name="a_Jitomate">
+          <option value="">Seleccionar</option>
+          <option value="Sí">Sí</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="lechuga">Lechuga</label>
+        <select id="lechuga" name="a_Lechuga">
+          <option value="">Seleccionar</option>
+          <option value="Sí">Sí</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- b) Fearless Chips -->
+    <div class="bloque-sub"><strong>b) Fearless Chips (papas fritas onduladas)</strong></div>
+    <div class="grid-2">
+      <div class="campo">
+        <label for="catsup_chips">Catsup</label>
+        <select id="catsup_chips" name="b_Fearless_Chips_Catsup">
+          <option value="">Seleccionar</option>
+          <option value="Sí">Sí</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Aviso Sides -->
+    <div class="aviso-sides">
+      ¿Quieres sides salados? Contesta los incisos C1. ¿Quieres sides dulces? Incisos C2<br />
+      ¡Si eliges ambas, tendrá costo extra!!
+    </div>
+
+    <!-- c1) All Too Waffles -->
+    <div class="bloque-pregunta">c1) All Too Waffles (3 Waffles en bites)</div>
+    <div class="grid-2">
+      <div class="campo">
+        <label for="waffles_maple">Miel de Maple</label>
+        <select id="waffles_maple" name="c1_Miel_de_Maple">
+          <option value="">Seleccionar</option>
+          <option value="Sí">Sí</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="waffles_chocolate">Chocolate Líquido</label>
+        <select id="waffles_chocolate" name="c1_Chocolate_Liquido">
+          <option value="">Seleccionar</option>
+          <option value="Sí">Sí</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="waffles_syrup">Syrup de frutos rojos</label>
+        <select id="waffles_syrup" name="c1_Syrup_frutos_rojos">
+          <option value="">Seleccionar</option>
+          <option value="Sí">Sí</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="waffles_cajeta">Cajeta</label>
+        <select id="waffles_cajeta" name="c1_Cajeta">
+          <option value="">Seleccionar</option>
+          <option value="Sí">Sí</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- c2) The Getaway Nuggets -->
+    <div class="bloque-sub"><strong>c2) The Getaway Nuggets (10 Nuggets)</strong></div>
+    <div class="grid-2">
+      <div class="campo">
+        <label for="nuggets_catsup">Catsup</label>
+        <select id="nuggets_catsup" name="c2_Nuggets_Catsup">
+          <option value="">Seleccionar</option>
+          <option value="Sí">Sí</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="nuggets_maple">Miel de Maple</label>
+        <select id="nuggets_maple" name="c2_Nuggets_Miel_Maple">
+          <option value="">Seleccionar</option>
+          <option value="Sí">Sí</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- d) The Archers Bow -->
+    <div class="bloque-sub"><strong>d) The Archers Bow (Brochetas de fruta)</strong></div>
+    <div class="grid-2">
+      <div class="campo">
+        <label for="fruta_fresa">Fresa</label>
+        <select id="fruta_fresa" name="d_Fresa">
+          <option value="">Seleccionar</option>
+          <option value="Sí">Sí</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="fruta_platano">Plátano</label>
+        <select id="fruta_platano" name="d_Platano">
+          <option value="">Seleccionar</option>
+          <option value="Sí">Sí</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="fruta_uva">Uva</label>
+        <select id="fruta_uva" name="d_Uva">
+          <option value="">Seleccionar</option>
+          <option value="Sí">Sí</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="fruta_sandia_melon">Sandía/Melón</label>
+        <select id="fruta_sandia_melon" name="d_Sandia_Melon">
+          <option value="">Seleccionar</option>
+          <option value="Sí">Sí</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- e) Enchanted Cake -->
+    <div class="bloque-pregunta">e) Enchanted Cake (elige solo 1 sabor)</div>
+    <div class="grid-2">
+      <label class="check-item"><input type="radio" name="e_Enchanted_Cake_Sabor" value="Chocolate" /> Chocolate</label>
+      <label class="check-item"><input type="radio" name="e_Enchanted_Cake_Sabor" value="Birthday Cake" /> Birthday Cake</label>
+      <label class="check-item"><input type="radio" name="e_Enchanted_Cake_Sabor" value="Vainilla" /> Vainilla</label>
+      <div class="campo">
+        <label for="vela">¿Vela?</label>
+        <select id="vela" name="e_Vela">
+          <option value="">Seleccionar</option>
+          <option value="Sí">Sí</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- f) The Alchemy Bar -->
+    <div class="bloque-sub"><strong>f) The Alchemy Bar (elige solo 1)</strong></div>
+    <div class="grid-3">
+      <label class="check-item"><input type="radio" name="f_Alchemy_Bar" value="Mimosa" /> Mimosa</label>
+      <label class="check-item"><input type="radio" name="f_Alchemy_Bar" value="Matcha" /> Matcha</label>
+      <label class="check-item"><input type="radio" name="f_Alchemy_Bar" value="Chocolate" /> Chocolate</label>
+      <label class="check-item"><input type="radio" name="f_Alchemy_Bar" value="Café" /> Café</label>
+      <label class="check-item"><input type="radio" name="f_Alchemy_Bar" value="Té" /> Té</label>
+      <label class="check-item"><input type="radio" name="f_Alchemy_Bar" value="Refresco" /> Refresco</label>
+      <label class="check-item"><input type="radio" name="f_Alchemy_Bar" value="Latte" /> Latte</label>
+      <label class="check-item"><input type="radio" name="f_Alchemy_Bar" value="Jugo" /> Jugo</label>
+      <div class="campo">
+        <label for="alchemy_otra">Opción escrita</label>
+        <input type="text" id="alchemy_otra" name="f_Alchemy_Bar_Escrita" placeholder="Escribe otra opción" />
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="bloque-pregunta">5. ¿Algún regalo extra que quieras agregar? (Cada uno con precios)</div>
+    <div class="grid-2">
+      <div class="campo">
+        <label for="extra_flores">Flores</label>
+        <select id="extra_flores" name="5_Flores">
+          <option value="">No agregar</option>
+          <option value="Sí">Agregar</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="extra_tshirt">Tshirt</label>
+        <select id="extra_tshirt" name="5_Tshirt">
+          <option value="">No agregar</option>
+          <option value="Sí">Agregar</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="extra_taza">Taza</label>
+        <select id="extra_taza" name="5_Taza">
+          <option value="">No agregar</option>
+          <option value="Sí">Agregar</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="extra_hoodie">Hoodie</label>
+        <select id="extra_hoodie" name="5_Hoodie">
+          <option value="">No agregar</option>
+          <option value="Sí">Agregar</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="extra_termo">Termo</label>
+        <select id="extra_termo" name="5_Termo">
+          <option value="">No agregar</option>
+          <option value="Sí">Agregar</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="extra_cosmetiquera">Cosmetiquera</label>
+        <select id="extra_cosmetiquera" name="5_Cosmetiquera">
+          <option value="">No agregar</option>
+          <option value="Sí">Agregar</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="extra_scrunchie">Scrunchie</label>
+        <select id="extra_scrunchie" name="5_Scrunchie">
+          <option value="">No agregar</option>
+          <option value="Sí">Agregar</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="extra_globos">Globos</label>
+        <select id="extra_globos" name="5_Globos">
+          <option value="">No agregar</option>
+          <option value="Sí">Agregar</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="bloque-sub"><strong>6. ¿Algo más que debamos saber? (alergias, ocasión especial, mensaje personalizado, etc.)</strong></div>
+    <div class="grid-2">
+      <div class="campo" style="grid-column: 1 / -1;">
+        <label for="notas_finales">Opción escrita</label>
+        <textarea id="notas_finales" name="6_Algo_Mas_Que_Debamos_Saber"></textarea>
+      </div>
+    </div>
+
+    <div class="cierre">
+      <p>¡Todo listo!! Te contactaremos con el presupuesto final y la confirmación de los detalles!</p>
+      <p>From the kitchen of Taylor Swift... ¡Gracias por tu confianza!</p>
+    </div>
+
+    <div class="acciones">
+      <button type="submit">Enviar Pedido</button>
+    </div>
+  </form>
+</body>
+</html>
